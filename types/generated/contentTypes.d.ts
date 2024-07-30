@@ -389,6 +389,12 @@ export interface ApiProjectProject extends Schema.CollectionType {
     postcard_project: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    cover_image: Attribute.Media<'images'>;
+    project_images: Attribute.Relation<
+      'api::project.project',
+      'oneToMany',
+      'api::project-image.project-image'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -413,6 +419,7 @@ export interface ApiProjectImageProjectImage extends Schema.CollectionType {
     singularName: 'project-image';
     pluralName: 'project-images';
     displayName: 'ProjectImage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -420,14 +427,11 @@ export interface ApiProjectImageProjectImage extends Schema.CollectionType {
   attributes: {
     image_title: Attribute.String & Attribute.Required;
     image_src: Attribute.Media<'images'> & Attribute.Required;
-    project_slug: Attribute.Relation<
+    project: Attribute.Relation<
       'api::project-image.project-image',
-      'oneToOne',
+      'manyToOne',
       'api::project.project'
     >;
-    cover_image: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
