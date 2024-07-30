@@ -4,7 +4,8 @@
   "info": {
     "singularName": "project-image",
     "pluralName": "project-images",
-    "displayName": "ProjectImage"
+    "displayName": "ProjectImage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,22 +17,18 @@
       "required": true
     },
     "image_src": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "project_slug": {
+    "project": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::project.project"
-    },
-    "cover_image": {
-      "type": "boolean",
-      "default": false,
-      "required": true
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "project_images"
     }
   }
 }
