@@ -45,6 +45,19 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "cover_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "project_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-image.project-image",
+      "mappedBy": "project"
     }
   }
 }
