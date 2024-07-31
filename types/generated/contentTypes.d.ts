@@ -362,94 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiProjectProject extends Schema.CollectionType {
-  collectionName: 'projects';
-  info: {
-    singularName: 'project';
-    pluralName: 'projects';
-    displayName: 'Project';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    project_name: Attribute.String;
-    project_year: Attribute.Integer &
-      Attribute.Required &
-      Attribute.DefaultTo<2018>;
-    project_description: Attribute.Blocks;
-    postcards_sent: Attribute.Integer & Attribute.DefaultTo<0>;
-    project_type: Attribute.Enumeration<
-      ['Art Challenge', 'Hobby Project', 'Commissions', 'Miscellaneous']
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'Hobby Project'>;
-    project_slug: Attribute.String;
-    postcard_project: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    cover_image: Attribute.Media<'images'>;
-    project_images: Attribute.Relation<
-      'api::project.project',
-      'oneToMany',
-      'api::project-image.project-image'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProjectImageProjectImage extends Schema.CollectionType {
-  collectionName: 'project_images';
-  info: {
-    singularName: 'project-image';
-    pluralName: 'project-images';
-    displayName: 'ProjectImage';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image_title: Attribute.String & Attribute.Required;
-    image_src: Attribute.Media<'images'> & Attribute.Required;
-    project: Attribute.Relation<
-      'api::project-image.project-image',
-      'manyToOne',
-      'api::project.project'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::project-image.project-image',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::project-image.project-image',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -876,6 +788,130 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiContactFormSubmissionContactFormSubmission
+  extends Schema.CollectionType {
+  collectionName: 'contact_form_submissions';
+  info: {
+    singularName: 'contact-form-submission';
+    pluralName: 'contact-form-submissions';
+    displayName: 'ContactFormSubmission';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    email: Attribute.Email;
+    subject: Attribute.Text;
+    message: Attribute.Blocks & Attribute.Required;
+    replied: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-form-submission.contact-form-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-form-submission.contact-form-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Project';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    project_name: Attribute.String;
+    project_year: Attribute.Integer &
+      Attribute.Required &
+      Attribute.DefaultTo<2018>;
+    project_description: Attribute.Blocks;
+    postcards_sent: Attribute.Integer & Attribute.DefaultTo<0>;
+    project_type: Attribute.Enumeration<
+      ['Art Challenge', 'Hobby Project', 'Commissions', 'Miscellaneous']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Hobby Project'>;
+    project_slug: Attribute.String;
+    postcard_project: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    cover_image: Attribute.Media<'images'>;
+    project_images: Attribute.Relation<
+      'api::project.project',
+      'oneToMany',
+      'api::project-image.project-image'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectImageProjectImage extends Schema.CollectionType {
+  collectionName: 'project_images';
+  info: {
+    singularName: 'project-image';
+    pluralName: 'project-images';
+    displayName: 'ProjectImage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image_title: Attribute.String & Attribute.Required;
+    image_src: Attribute.Media<'images'> & Attribute.Required;
+    project: Attribute.Relation<
+      'api::project-image.project-image',
+      'manyToOne',
+      'api::project.project'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project-image.project-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project-image.project-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -886,8 +922,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::project.project': ApiProjectProject;
-      'api::project-image.project-image': ApiProjectImageProjectImage;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -896,6 +930,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::contact-form-submission.contact-form-submission': ApiContactFormSubmissionContactFormSubmission;
+      'api::project.project': ApiProjectProject;
+      'api::project-image.project-image': ApiProjectImageProjectImage;
     }
   }
 }
