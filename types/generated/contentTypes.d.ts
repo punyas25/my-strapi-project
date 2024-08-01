@@ -840,7 +840,6 @@ export interface ApiProjectProject extends Schema.CollectionType {
     project_year: Attribute.Integer &
       Attribute.Required &
       Attribute.DefaultTo<2018>;
-    project_description: Attribute.Blocks;
     postcards_sent: Attribute.Integer & Attribute.DefaultTo<0>;
     project_type: Attribute.Enumeration<
       ['Art Challenge', 'Hobby Project', 'Commissions', 'Miscellaneous']
@@ -857,6 +856,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'oneToMany',
       'api::project-image.project-image'
     >;
+    project_description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
