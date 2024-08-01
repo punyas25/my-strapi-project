@@ -27,7 +27,6 @@ module.exports = createCoreController('api::project.project', ({ strapi }) => ({
     try {
       const { project_slug } = ctx.params;
       const projectsData = await strapi.entityService.findMany('api::project.project', {
-        fields: ['project_name', 'project_year', 'project_description', 'project_slug'],
         filters: {
           project_slug: project_slug,
         },
