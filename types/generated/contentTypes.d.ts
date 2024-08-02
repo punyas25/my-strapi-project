@@ -804,8 +804,8 @@ export interface ApiContactFormSubmissionContactFormSubmission
     name: Attribute.String & Attribute.Required;
     email: Attribute.Email;
     subject: Attribute.Text;
-    message: Attribute.Blocks & Attribute.Required;
     replied: Attribute.Boolean & Attribute.DefaultTo<false>;
+    message: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
