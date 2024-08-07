@@ -22,13 +22,12 @@
     "subject": {
       "type": "text"
     },
-    "message": {
-      "type": "blocks",
-      "required": true
-    },
     "replied": {
       "type": "boolean",
       "default": false
+    },
+    "message": {
+      "type": "text"
     }
   }
 }
